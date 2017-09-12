@@ -31,6 +31,11 @@ class FirebirdGrammar extends Grammar {
     return "SELECT RDB\$RELATION_NAME FROM RDB\$RELATIONS WHERE RDB\$RELATION_NAME = ?";
   }
 
+  public function compileColumnListing($table)
+  {
+    return "SELECT RDB\$FIELD_NAME AS \"column\" FROM RDB\$RELATION_FIELDS WHERE RDB\$RELATION_NAME = '" . $table . "'";
+  }
+
   /**
    * Compile a create table command.
    *
